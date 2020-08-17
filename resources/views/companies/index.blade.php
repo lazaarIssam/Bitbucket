@@ -172,7 +172,7 @@
                 <div class="col-md-4">
                     <form method="post" action="{{ route('companies.employeList', ['id' => $item->id]) }}">
                         @csrf
-                          <button class="btn btn-outline-details btn-sm"> Liste des employes</button>
+                          <button class="btn btn-outline-info btn-sm"> Liste des employes</button>
                     </form>
                 </div>
                 </div>
