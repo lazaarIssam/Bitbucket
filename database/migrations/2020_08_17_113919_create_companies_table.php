@@ -18,7 +18,7 @@ class CreateCompaniesTable extends Migration
             $table->string('Name',120);
             $table->string('Email');
             $table->text('Address');
-            $table->tinyInteger('Phone');
+            $table->string('Phone');
             $table->string('Website');
             $table->timestamps();
         });

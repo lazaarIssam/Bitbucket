@@ -20,3 +20,12 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+//Toutes les routes pour companies
+//All routes for companies
+Route::get('/companies', 'CompanieController@index')->name('companies.index');
+Route::post('/companies/store', 'CompanieController@store')->name('companies.store');
+Route::post('/update', 'CompanieController@update')->name('companies.update');
+Route::post('/recherche', 'CompanieController@recherche')->name('companies.recherche');
+Route::post('/employeList/{id}', 'CompanieController@employeList')->name('companies.employeList');
+Route::post('/companies/{id}', 'CompanieController@destroy')->name('companies.destroy');

@@ -14,9 +14,9 @@ class AddForeignkeyToEmployeesTable extends Migration
     public function up()
     {
         Schema::table('employees', function (Blueprint $table) {
-            //Ajout Clef étrangère(CE) qui reference le createur de l'objet star
-            //Cette CE va se créer apres la colone de la clef primaire de la table stars
-            //Adding a foreign key to reference the creator of the object star
+            //Ajout Clef étrangère(CE/FK) qui reference l'objet company
+            //Cette CE va se créer apres la colone de la clef primaire de la table companies
+            //Adding a foreign key to reference the object company
             //This foreign key will be created after the primary key in the stars table
             $table->bigInteger('companie_id')->unsigned()->after('id');
             $table->foreign('companie_id')->references('id')->on('companies');

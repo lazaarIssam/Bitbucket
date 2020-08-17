@@ -20,7 +20,7 @@ class CreateEmployeesTable extends Migration
             $table->string('Designation');
             $table->string('Email');
             $table->text('Address');
-            $table->tinyInteger('Mobile');
+            $table->string('Mobile');
             $table->timestamps();
         });
     }
