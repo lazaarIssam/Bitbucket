@@ -68,7 +68,8 @@
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
-                        <a href="{{ url('/home') }}">Home</a>
+                        <a href="{{ url('/companies') }}">Liste des companies</a>
+                        <a href="{{ url('/employees') }}">Liste des employees</a>
                     @else
                         <a href="{{ route('login') }}">Login</a>
                         {{-- On supprime la fonction register de la page welcome du projet  --}}
@@ -81,18 +82,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Bitbucket
                 </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
                 </div>
             </div>
         </div>
