@@ -71,7 +71,8 @@ class EmployeeController extends Controller
         $employee->save();
 
         Session::flash('success', 'Bien enregister');
-        return redirect()->route('employees.index');
+        // return redirect()->route('employees.index');
+        return back();
     }
 
     /**
@@ -103,9 +104,22 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request)
     {
-        //
+        
+        $employee = Employee::find($request->id);
+        $employee->companie_id = $request->post('companie_id');
+        $employee->FirstName = $request->FirstName;
+        $employee->LastName = $request->LastName;
+        $employee->Designation = $request->post('Designation');
+        $employee->Email = $request->Email;
+        $employee->Address = $request->Address; 
+        $employee->Mobile = $request->Mobile;
+        $employee->save();
+
+        Session::flash('success', 'Bien enregister');
+        // return redirect()->route('employees.index');
+        return back();
     }
 
     /**

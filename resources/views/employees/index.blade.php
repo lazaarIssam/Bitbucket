@@ -14,7 +14,6 @@
     </div>
   </div>
 </form>
-
 {{-- Modal for Adding Employee || Modal pour l'ajout des Employees --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -42,7 +41,7 @@
                 <select name="Designation" id="Designation1"  class="form-control" required>
                     <option value="">Choose...</option>
                     <option value="Mr.">Mr.</option>
-                    <option value="Mr.">Mme.</option>
+                    <option value="Mme.">Mme.</option>
                 </select>
             </div>
             <div class="form-group">
@@ -92,25 +91,42 @@
             @csrf
             <input type="hidden" id="idm" name="id">
             <div class="form-group">
-              <label for="Name" class="col-form-label">Name :</label>
-              <input type="text" class="form-control" name="Name" id="Name" required>
+                <label for="message-text" class="col-form-label">Company</label>
+                <select name="companie_id" id="companie_id"  class="form-control" required>
+                    <option value="">Choose...</option>
+                    @foreach($listCompanies as $info)
+                  <option value="{{$info->id}}">{{$info->Name}}</option>
+                  @endforeach
+                </select>
             </div>
+            <div class="form-group">
+                <label for="message-text" class="col-form-label">Designation</label>
+                <select name="Designation" id="Designation"  class="form-control" required>
+                    <option value="">Choose...</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mme.">Mme.</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="FirstName" class="col-form-label">First Name :</label>
+              <input type="text" class="form-control" name="FirstName" id="FirstName" required>
+            </div>
+            <div class="form-group">
+                <label for="LastName" class="col-form-label">Last Name :</label>
+                <input type="text" class="form-control" name="LastName" id="LastName" required>
+              </div>
             <div class="form-group">
               <label for="Email" class="col-form-label">Email :</label>
               <input type="text" class="form-control" name="Email" id="Email" required>
             </div>
             <div class="form-group">
                 <label for="Address" class="col-form-label">Address :</label>
-                <textarea type="text" class="form-control" name="Address" id="Address"></textarea>
+                <textarea type="text" class="form-control" name="Address" id="Address"> </textarea>
             </div>
             <div class="form-group">
-                <label for="Phone" class="col-form-label">Phone :</label>
-                <textarea type="text" class="form-control" name="Phone" id="Phone"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="Website" class="col-form-label">Website :</label>
-                <textarea type="text" class="form-control" name="Website" id="Website"></textarea>
-            </div>
+                <label for="Mobile" class="col-form-label">Mobile :</label>
+                <input type="text" class="form-control" name="Mobile" id="Mobile" required>
+              </div>
           </form>
         </div>
         <div class="modal-footer">
