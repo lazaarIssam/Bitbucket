@@ -65,7 +65,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel1">Modifier Materiel</h5>
+          <h5 class="modal-title" id="exampleModalLabel1">Modifier Company</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -88,11 +88,11 @@
             </div>
             <div class="form-group">
                 <label for="Phone" class="col-form-label">Phone :</label>
-                <textarea type="text" class="form-control" name="Phone" id="Phone"></textarea>
+                <input type="text" class="form-control" name="Phone" id="Phone"/>
             </div>
             <div class="form-group">
                 <label for="Website" class="col-form-label">Website :</label>
-                <textarea type="text" class="form-control" name="Website" id="Website"></textarea>
+                <input type="text" class="form-control" name="Website" id="Website"/>
             </div>
           </form>
         </div>
