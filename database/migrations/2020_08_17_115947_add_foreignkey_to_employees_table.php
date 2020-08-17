@@ -19,7 +19,7 @@ class AddForeignkeyToEmployeesTable extends Migration
             //Adding a foreign key to reference the object company
             //This foreign key will be created after the primary key in the stars table
             $table->bigInteger('companie_id')->unsigned()->after('id');
-            $table->foreign('companie_id')->references('id')->on('companies');
+            $table->foreign('companie_id')->references('id')->on('companies')->onDelete('cascade');;
         });
     }
 
