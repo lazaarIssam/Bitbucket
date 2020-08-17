@@ -145,10 +145,10 @@ class CompanieController extends Controller
     public function employeList($id){
         $list = DB::table('employees')
                         ->Join('companies', 'employees.companie_id', '=', 'companies.id')
-                        ->select('employees.*')
+                        ->select('employees.*','companies.Name as compName')
                         ->where('companies.id','=',$id)
                         ->distinct()
                         ->paginate(10);
-        return view('employees.index',['list' => $list]);
+        return view('companies.listEmployee',['list' => $list]);
     }
 }
