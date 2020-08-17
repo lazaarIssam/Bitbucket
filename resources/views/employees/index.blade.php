@@ -20,7 +20,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Nouveau company</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Nouveau Employee</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -29,9 +29,30 @@
           <form action="{{ route('employees.store') }}" method="post" id="frm" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-              <label for="nom" class="col-form-label">Name :</label>
-              <input type="text" class="form-control" name="Name" id="Name1" required>
+                <label for="message-text" class="col-form-label">Company</label>
+                <select name="companie_id" id="companie_id1"  class="form-control" required>
+                    <option value="">Choose...</option>
+                    @foreach($listCompanies as $info)
+                  <option value="{{$info->id}}">{{$info->Name}}</option>
+                  @endforeach
+                </select>
             </div>
+            <div class="form-group">
+                <label for="message-text" class="col-form-label">Designation</label>
+                <select name="Designation" id="Designation1"  class="form-control" required>
+                    <option value="">Choose...</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mr.">Mme.</option>
+                </select>
+            </div>
+            <div class="form-group">
+              <label for="FirstName1" class="col-form-label">First Name :</label>
+              <input type="text" class="form-control" name="FirstName" id="FirstName1" required>
+            </div>
+            <div class="form-group">
+                <label for="LastName1" class="col-form-label">Last Name :</label>
+                <input type="text" class="form-control" name="LastName" id="LastName1" required>
+              </div>
             <div class="form-group">
               <label for="Email1" class="col-form-label">Email :</label>
               <input type="text" class="form-control" name="Email" id="Email1" required>
@@ -41,12 +62,8 @@
                 <textarea type="text" class="form-control" name="Address" id="Address1"> </textarea>
             </div>
             <div class="form-group">
-                <label for="Phone" class="col-form-label">Phone :</label>
-                <input type="text" class="form-control" name="Phone" id="Phone1" required>
-              </div>
-              <div class="form-group">
-                <label for="Website" class="col-form-label">WebSite :</label>
-                <input type="text" class="form-control" name="Website" id="Website1" required>
+                <label for="Mobile" class="col-form-label">Mobile :</label>
+                <input type="text" class="form-control" name="Mobile" id="Mobile1" required>
               </div>
           </form>
         </div>
@@ -161,7 +178,7 @@
                 @if($item->Address == NULL)
                 <td scope="row text-center">---</td>
                 @else
-                <td scope="row text-center">{{ $item->Address }}</td>
+                <td scope="row text-center">{{ substr($item->Address, 0, 15) }}...</td>
                 @endif
                 {{-- Phone --}}
                 @if($item->Mobile == NULL)

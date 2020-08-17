@@ -27,13 +27,18 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        $listCompanies = DB::table('companies')
+                        ->select('companies.*')
+                        ->distinct()
+                        ->orderBy('companies.created_at', 'desc')
+                        ->get();
         $list = DB::table('employees')
                         ->Join('companies', 'employees.companie_id', '=', 'companies.id')
                         ->select('employees.*','companies.Name as compName')
                         ->distinct()
                         ->orderBy('employees.created_at', 'desc')
                         ->paginate(10);
-        return view('employees.index',['list' => $list]);
+        return view('employees.index',['list' => $list,'listCompanies'=>$listCompanies]);
     }
 
     /**
@@ -54,7 +59,19 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->input());
+        $employee = new Employee();
+        $employee->companie_id = $request->post('companie_id');
+        $employee->FirstName = $request->FirstName;
+        $employee->LastName = $request->LastName;
+        $employee->Designation = $request->Designation;
+        $employee->Email = $request->Email;
+        $employee->Address = $request->Address; 
+        $employee->Mobile = $request->Mobile;
+        $employee->save();
+
+        Session::flash('success', 'Bien enregister');
+        return redirect()->route('employees.index');
     }
 
     /**
