@@ -59,6 +59,7 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         //dd($request->input());
         $employee = new Employee();
         $employee->companie_id = $request->post('companie_id');
@@ -71,6 +72,9 @@ class EmployeeController extends Controller
         $employee->save();
 
         Session::flash('success', 'Bien enregister');
+        }catch(Throwable $e){
+            Session::flash('failed', 'Vous ne pouvez pas ajouter cette employee');
+        }
         // return redirect()->route('employees.index');
         return back();
     }
@@ -106,7 +110,7 @@ class EmployeeController extends Controller
      */
     public function update(Request $request)
     {
-        
+        try{
         $employee = Employee::find($request->id);
         $employee->companie_id = $request->post('companie_id');
         $employee->FirstName = $request->FirstName;
@@ -118,6 +122,9 @@ class EmployeeController extends Controller
         $employee->save();
 
         Session::flash('success', 'Bien enregister');
+        }catch(Throwable $e){
+            Session::flash('failed', 'Vous ne pouvez pas modifier cette employee');
+        }
         // return redirect()->route('employees.index');
         return back();
     }
@@ -128,8 +135,40 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        try{
+            // On supprime l'objet avec son id
+            //we delete the object using the id
+            $employee = Employee::find($id);
+            $employee->delete();
+            Session::flash('success', 'Bien supprimer');
+        }catch(Throwable $e){
+            Session::flash('failed', 'Vous ne pouvez pas supprimer cette employee');
+        }
+        return redirect()->route('employees.index');
+    }
+
+    //Fonction de recherche avec le nom de la company
+    //Search fonction using the name of the company
+    public function recherche (Request $request){
+        if($request->input('recherche') != ""){
+        $list = DB::table('employees')
+                        ->Join('companies', 'employees.companie_id', '=', 'companies.id')
+                        ->select('employees.*','companies.Name as compName','companies.*')
+                        ->where('companies.name','like','%'.$request->input('recherche').'%')
+                        ->distinct()
+                        ->orderBy('employees.created_at', 'desc')
+                        ->paginate(10);
+        $listCompanies = DB::table('companies')
+                        ->select('companies.*')
+                        ->distinct()
+                        ->orderBy('companies.created_at', 'desc')
+                        ->get();
+        //return view('materiel.index')->with('list', $list);
+        return view('employees.index',['list' => $list,'listCompanies'=>$listCompanies]);
+        }else{
+            return redirect()->route('employees.index');
+        }
     }
 }

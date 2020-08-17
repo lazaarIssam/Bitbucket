@@ -8,9 +8,17 @@
   <form action="{{ route('employees.recherche') }}" id="frmrecherche" method="post" enctype="multipart/form-data">
     @csrf
     <div class="input-group mb-3">
-      <input type="text" name="recherche" id="recherche" class="form-control" placeholder="Zone de recherche">
+      {{-- <input type="text" name="recherche" id="recherche" class="form-control" placeholder="Zone de recherche"> --}}
+      <div class="form-group">
+        <label for="message-text" class="col-form-label">Recherche avec nom de la company</label> <br/>
+        <select name="recherche" id="recherche"  class="form-control">
+            <option value="">Company</option>
+            @foreach($listCompanies as $info)
+          <option value="{{$info->Name}}">{{$info->Name}}</option>
+          @endforeach
+        </select> <br/>
+        <button class="btn btn-outline-secondary" form="frmrecherche" type="submit">Recherche</button>
     <div class="input-group-append">
-    <button class="btn btn-outline-secondary" form="frmrecherche" type="submit">Recherche</button>
     </div>
   </div>
 </form>

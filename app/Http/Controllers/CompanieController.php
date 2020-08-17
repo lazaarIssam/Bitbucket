@@ -51,6 +51,7 @@ class CompanieController extends Controller
      */
     public function store(Request $request)
     {
+        try{
         //dd($request->input());
         $comapnie = new Companie();
         $comapnie->Name = $request->Name;
@@ -61,6 +62,9 @@ class CompanieController extends Controller
         $comapnie->save();
 
         Session::flash('success', 'Bien enregister');
+        }catch(Throwable $e){
+            Session::flash('failed', 'Vous ne pouvez pas ajouter cette objet');
+        }
         return redirect()->route('companies.index');
     }
 
@@ -95,6 +99,7 @@ class CompanieController extends Controller
      */
     public function update(Request $request)
     {
+        try{
         $comapnie = Companie::find($request->id);
         $comapnie->Name = $request->Name;
         $comapnie->Email = $request->Email;
@@ -103,6 +108,9 @@ class CompanieController extends Controller
         $comapnie->Website = $request->Website;
         $comapnie->save();
         Session::flash('success', 'Bien modifier');
+        }catch(Throwable $e){
+            Session::flash('failed', 'Vous ne pouvez pas modifier cette objet');
+        }
         return redirect()->route('companies.index');
     }
 
@@ -133,11 +141,15 @@ class CompanieController extends Controller
      */
     public function destroy($id)
     {
+        try{
         // On supprime l'objet avec son id
         //we delete the object using the id
         $companie = Companie::find($id);
         $companie->delete();
         Session::flash('success', 'Bien supprimer');
+        }catch(Throwable $e){
+            Session::flash('failed', 'Vous ne pouvez pas supprimer cette objet');
+        }
         return redirect()->route('companies.index');
     }
     
