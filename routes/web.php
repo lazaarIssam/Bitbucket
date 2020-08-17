@@ -25,14 +25,14 @@ Route::get('/home', 'HomeController@index')->name('home');
 //All routes for companies
 Route::get('/companies', 'CompanieController@index')->name('companies.index');
 Route::post('/companies/store', 'CompanieController@store')->name('companies.store');
-Route::post('/update', 'CompanieController@update')->name('companies.update');
-Route::post('/recherche', 'CompanieController@recherche')->name('companies.recherche');
+Route::post('/updateCompanies', 'CompanieController@update')->name('companies.update');
+Route::post('/rechercheCompanies', 'CompanieController@recherche')->name('companies.recherche');
 Route::post('/employeList/{id}', 'CompanieController@employeList')->name('companies.employeList');
 Route::post('/companies/{id}', 'CompanieController@destroy')->name('companies.destroy');
 
 //All routes for Employees
-Route::get('/companies', 'CompanieController@index')->name('companies.index');
-Route::post('/companies/store', 'CompanieController@store')->name('companies.store');
-Route::post('/update', 'CompanieController@update')->name('companies.update');
-Route::post('/recherche', 'CompanieController@recherche')->name('companies.recherche');
-Route::post('/companies/{id}', 'CompanieController@destroy')->name('companies.destroy');
+Route::get('/employees', 'EmployeeController@index')->name('employees.index');
+Route::post('/employees/store', 'EmployeeController@store')->name('employees.store');
+Route::post('/updateEmployees', 'EmployeeController@update')->name('employees.update');
+Route::post('/rechercheEmployee', 'EmployeeController@recherche')->name('employees.recherche');
+Route::post('/employees/{id}', 'EmployeeController@destroy')->name('employees.destroy');

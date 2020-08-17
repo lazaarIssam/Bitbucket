@@ -4,9 +4,22 @@ namespace App\Http\Controllers;
 
 use App\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Auth;
+use Session;
 
 class EmployeeController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +27,13 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $list = DB::table('employees')
+                        ->Join('companies', 'employees.companie_id', '=', 'companies.id')
+                        ->select('employees.*','companies.Name as compName')
+                        ->distinct()
+                        ->orderBy('employees.created_at', 'desc')
+                        ->paginate(10);
+        return view('employees.index',['list' => $list]);
     }
 
     /**

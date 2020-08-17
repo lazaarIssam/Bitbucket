@@ -15,7 +15,7 @@
   </div>
 </form>
 
-{{-- Modal for Adding Star || Modal pour l'ajout des stars --}}
+{{-- Modal for Adding Companies || Modal pour l'ajout des Companies --}}
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -60,7 +60,7 @@
 
 {{-- Modèle de modification des données --}}
 {{-- Ce modèle s'ouvre qaund on clique sur le button modifier qui fait appel à la fonction java script qui par son tour fait appel à ce modèle et remplisles données de la ligne en question --}}
-{{-- Une fois les données charger sur le modèle, on insere nos modification puis ce dernier fait appel à la méthode update ans notre controlleur MaterialController --}}
+{{-- Une fois les données charger sur le modèle, on insere nos modification puis ce dernier fait appel à la méthode update ans notre controlleur CompaniesController --}}
 <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
